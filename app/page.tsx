@@ -6,8 +6,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h2 className="text-4xl font-bold">
+    <main className="flex min-h-screen flex-col items-center justify-between p-16 bg-zinc-900">
+      <h2 className="text-4xl font-bold mb-6 text-zinc-100">
       Optometry Project 
 
       </h2>
