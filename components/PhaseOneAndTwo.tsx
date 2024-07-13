@@ -163,6 +163,8 @@ const PhaseOneAndTwo = () => {
       const arraysMatch = chosenImages.every(image => selectedImages.includes(image));
       if (arraysMatch) {
         alert('Correct selection!');
+      } else{
+        alert('Wrong selection')
       }
     }
   }, [selectedImages]);
