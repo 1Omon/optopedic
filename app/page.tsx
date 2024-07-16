@@ -21,7 +21,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-6 bg-zinc-900">
+    <main className="flex w-full min-h-screen flex-col items-center p-6 bg-zinc-900">
       <h2 className="text-4xl font-bold mb-4 text-zinc-100">
         Optometry Project
       </h2>

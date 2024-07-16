@@ -163,6 +163,7 @@ const PhaseOneAndTwo = () => {
       const arraysMatch = chosenImages.every(image => selectedImages.includes(image));
       if (arraysMatch) {
         alert('Correct selection!');
+        setSelectedImages([])
       } else{
         alert('Wrong selection')
       }
@@ -189,7 +190,7 @@ const PhaseOneAndTwo = () => {
           ))
         }
       </div>
-      <div className="flex w-1/4 items-center justify-between mx-auto">
+      <div className="flex w-full mt-8 items-center justify-between mx-auto">
         <button className='px-4 py-2 bg-zinc-600' onClick={resetImages}>
           Reset
         </button>

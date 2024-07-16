@@ -18,7 +18,7 @@ const images = [
 ];
 
 const distances = [
-  { label: '0cm', size: '450' },
+  { label: '0cm', size: '450px' },
   { label: '25cm', size: '325px' },
   { label: '40cm', size: '200px' },
   { label: '75cm', size: '125px' },
@@ -32,27 +32,22 @@ const PhaseThree = () => {
   const handleDistanceChange = (distance: string) => {
     setCurrentDistance(distance);
   };
-
-  const handleImageChange = (image: string) => {
-    setCurrentImage(image);
-  };
-
   return (
     <section className='relative h-screen'>
       <h4 className="text-lg text-zinc-300 font-medium mb-2 text-center">
         Focus on the image from different distances
       </h4>
       <div className="flex flex-col items-center j mb-4">
-        <div className='flex items-center justify-center'>
+        <div className='w-full h-[600px] flex items-center justify-center'>
           <Image 
             src={currentImage} 
             width={parseInt(currentDistance)} 
             height={parseInt(currentDistance)} 
             alt='focus image' 
-            className="mx-auto"
+            className="mx-auto  object-cover"
           />
         </div>
-        <div className="flex gap-4 absolute bottom-2 ">
+        <div className="flex gap-4 mt-4">
           {distances.map(distance => (
             <button 
               key={distance.label} 
@@ -61,19 +56,6 @@ const PhaseThree = () => {
             >
               {distance.label}
             </button>
-          ))}
-        </div>
-        <div className=" gap-4 mt-4 flex absolute bottom-16">
-          {images.map(image => (
-            <Image 
-              key={image} 
-              src={image} 
-              width={50} 
-              height={50} 
-              alt='thumbnail' 
-              className={`cursor-pointer ${currentImage === image ? 'border-2 border-blue-500' : ''}`}
-              onClick={() => handleImageChange(image)}
-            />
           ))}
         </div>
       </div>

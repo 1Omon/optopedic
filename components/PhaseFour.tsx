@@ -1,50 +1,64 @@
-"use client"
+'use client';
 import React, { useState } from 'react';
 
-const colors = [
-  'red',
-  'orange',
-  'yellow',
-  'green',
-  'blue',
-  'indigo',
-  'violet',
-];
+const distances = ['25cm', '40cm', '75cm', '100cm'];
 
-const PhaseFour = () => {
-  const [highlightedIndex, setHighlightedIndex] = useState<number>(0);
+const colors = ['red', 'green', 'blue', 'yellow'];
 
-  const nextColor = () => {
-    setHighlightedIndex((prevIndex) => (prevIndex + 1) % colors.length);
+const zDistances: { [key: string]: number } = {
+  '25cm': -100,
+  '40cm': -200,
+  '75cm': -350,
+  '100cm': -500,
+};
+
+const PhaseFour: React.FC = () => {
+  const [highlightedColor, setHighlightedColor] = useState(colors[0]);
+  const [currentDistance, setCurrentDistance] = useState(distances[0]);
+
+  const changeHighlight = () => {
+    const nextIndex = (colors.indexOf(highlightedColor) + 1) % colors.length;
+    setHighlightedColor(colors[nextIndex]);
   };
 
-  const previousColor = () => {
-    setHighlightedIndex((prevIndex) => (prevIndex - 1 + colors.length) % colors.length);
+  const changeDistance = (distance: string) => {
+    setCurrentDistance(distance);
   };
 
   return (
-    <>
-      <h4 className="text-lg text-zinc-300 font-medium mb-2 text-center">
-        Focus on the highlighted color
-      </h4>
-      <div className='flex justify-center items-center mb-4'>
-        {colors.map((color, index) => (
-          <div
-            key={index}
-            className={`w-12 h-12 mx-1 rounded-full ${index === highlightedIndex ? 'border-4 border-black' : 'filter blur-sm'}`}
-            style={{ backgroundColor: color }}
-          />
-        ))}
-      </div>
-      <div className="flex w-1/4 items-center justify-between mx-auto">
-        <button className='px-4 py-2 bg-zinc-600' onClick={previousColor}>
-          Previous
+    <div className="container">
+      <div className="card">
+        <div className="header">
+          <h2>Brock String Exercise</h2>
+        </div>
+        <div className="threed-space">
+          {colors.map((color, index) => (
+            <div
+              key={color}
+              className={`color-ball ${highlightedColor === color ? 'border-highlight' : ''}`}
+              style={{
+                backgroundColor: color,
+                transform: `translateZ(${zDistances[currentDistance]}px) translateX(${index * 50 - 75}px)`,
+              }}
+            ></div>
+          ))}
+        </div>
+        <button className="button" onClick={changeHighlight}>
+          Next Color
         </button>
-        <button className='px-4 py-2 bg-zinc-600' onClick={nextColor}>
-          Next
-        </button>
+        <div className="distance-buttons">
+          {distances.map((distance) => (
+            <button
+              key={distance}
+              onClick={() => changeDistance(distance)}
+              className={`distance-button ${currentDistance === distance ? 'active-distance' : ''}`}
+            >
+              {distance}
+            </button>
+          ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
